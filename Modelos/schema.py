@@ -5,7 +5,6 @@ from graphql_auth.schema import UserQuery
 from .mutations import Mutation as Mutations
 from .queries import Query as Queries
 
-
 class AuthMutation(graphene.ObjectType):
     verify_account = mutations.VerifyAccount.Field()
     resend_activation_email = mutations.ResendActivationEmail.Field()
