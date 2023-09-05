@@ -125,7 +125,7 @@ class Query(graphene.ObjectType):
         else:
             return Evento.objects.filter(
                 Q(nombre__icontains=name) | Q(pais__pais__icontains=name) | Q(
-                    reglamento__reglamento__icontains=name) | Q(tipoevento__tipo__icontains=name)
+                    reglamento__tipo__icontains=name) | Q(tipoevento__tipo__icontains=name)
 
             )
 
