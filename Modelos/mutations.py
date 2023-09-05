@@ -438,7 +438,7 @@ class ActualizarCombate(Mutation):
 
     def mutate(self, info, fecha, esquinaA, esquinaR,evento,id):
         try:
-            item = Pugil.objects.get(id=id)
+            item = Combate.objects.get(id=id)
             item_roja = Pugil.objects.get(id=esquinaR)
             item_azul = Pugil.objects.get(id=esquinaA)
             item_evento = Evento.objects.get(id=evento)
@@ -465,6 +465,123 @@ class EliminarCombate(Mutation):
             return EliminarCombate(success=True, errors=None)
         except Exception as e:
             return EliminarCombate(success=False, errors=str(e))
+        
+class NuevoHistorico(Mutation):
+    class Arguments:
+        peso = graphene.Decimal(required=True)
+        fecha = graphene.Date(required=False)
+        pugil = graphene.Int(required=True)        
+    
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, peso, fecha, pugil):
+        try:
+            item_peso = peso
+            item_fecha = fecha
+            item_pugil = Pugil.objects.get(id=pugil)
+            HistoricoPeso.objects.create(fecha=item_fecha, peso=item_peso, pugil=item_pugil)
+            return NuevoHistorico(success=True, errors=None)
+        except Exception as e:
+            return NuevoHistorico(success=False, errors=str(e))
+
+
+class ActualizarHistorico(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        fecha = graphene.Date(required=False)
+        peso = graphene.Decimal(required=False)
+        pugil = graphene.Int(required=False)           
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, fecha, peso, pugil,id):
+        try:
+            item = HistoricoPeso.objects.get(id=id)
+            item_pugil = Pugil.objects.get(id=pugil)
+            item.fecha = fecha
+            item.peso = peso
+            item.save()
+            return ActualizarHistorico(success=True, errors=None)
+        except Exception as e:
+            return ActualizarHistorico(success=False, errors=str(e))
+
+class EliminarHistorico(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, id):
+        try:
+            item = HistoricoPeso.objects.get(id=id)
+            item.delete()
+            return EliminarHistorico(success=True, errors=None)
+        except Exception as e:
+            return EliminarHistorico(success=False, errors=str(e))
+
+class NuevoResultado(Mutation):
+    class Arguments:
+        combate = graphene.Int(required=True)
+        resultado = graphene.Int(required=False)
+        pugil = graphene.Int(required=True)        
+    
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, combate, resultado, pugil):
+        try:
+            item_combate = Combate.objects.get(id=combate)
+            item_resultado = CodifResultado.objects.get(id=resultado)
+            item_pugil = Pugil.objects.get(id=pugil)
+            Resultado.objects.create(combate=item_combate, resultado=item_resultado, pugil=item_pugil)
+            return NuevoResultado(success=True, errors=None)
+        except Exception as e:
+            return NuevoResultado(success=False, errors=str(e))
+
+
+class ActualizarResultado(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        combate = graphene.Int(required=False)
+        resultado = graphene.Int(required=False)
+        pugil = graphene.Int(required=False)           
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, combate, resultado, pugil,id):
+        try:
+            item = Resultado.objects.get(id=id)
+            item_pugil = Pugil.objects.get(id=pugil)
+            item_combate = Combate.objects.get(id=combate)
+            item_resultado = CodifResultado.objects.get(id=resultado)
+            item.resultado = item_resultado
+            item.combate = item_combate
+            item.pugil = item_pugil
+            item.save()
+            return ActualizarResultado(success=True, errors=None)
+        except Exception as e:
+            return ActualizarResultado(success=False, errors=str(e))
+
+class EliminarResultado(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, id):
+        try:
+            item = Resultado.objects.get(id=id)
+            item.delete()
+            return EliminarResultado(success=True, errors=None)
+        except Exception as e:
+            return EliminarResultado(success=False, errors=str(e))
+
+        
 class Mutation(graphene.ObjectType):
     nuevoPais = NuevoPais.Field()
     actualizarPais = ActualizarPais.Field()
@@ -490,3 +607,9 @@ class Mutation(graphene.ObjectType):
     nuevoCombate = NuevoCombate.Field()
     actualizarCombate = ActualizarCombate.Field()
     eliminarCombate = EliminarCombate.Field()
+    nuevoHistorico = NuevoHistorico.Field()
+    actualizarHistorico = ActualizarHistorico.Field()
+    eliminarHistorico = EliminarHistorico.Field()
+    nuevoResultado = NuevoResultado.Field()
+    actualizarResultado = ActualizarResultado.Field()
+    EliminarResultado = EliminarResultado.Field()
