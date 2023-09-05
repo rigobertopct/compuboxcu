@@ -351,7 +351,7 @@ class NuevoPugil(Mutation):
             item_edad = edad
             item_peso = peso
             item_categoria = Categoria.objects.get(id=categoria)
-            item_pais = Categoria.objects.get(id=pais)
+            item_pais = Pais.objects.get(id=pais)
             Pugil.objects.create(nombre=item_nombre, edad=item_edad, peso=item_peso, categoria=item_categoria,pais=item_pais)
             return NuevoPugil(success=True, errors=None)
         except Exception as e:
