@@ -1,0 +1,10 @@
+[
+    {
+        "pk": "1",
+        "model": "Golpe",
+        "fields": {
+            "golpe": "Golpe Cruzado Lanzado al Tronco",
+            "siglas": "GCLTT"
+        }
+    }
+]
