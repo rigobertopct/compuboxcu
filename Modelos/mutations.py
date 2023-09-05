@@ -279,8 +279,8 @@ class EliminarEvento(Mutation):
 class NuevaCategoria(Mutation):
     class Arguments:
         categoria = graphene.String(required=True)
-        peso_min = graphene.Int(required=False)
-        peso_max = graphene.Int(required=False)
+        peso_min = graphene.Decimal(required=False)
+        peso_max = graphene.Decimal(required=False)
     
     success = graphene.Boolean()
     errors = graphene.String()
@@ -334,6 +334,73 @@ class EliminarCategoria(Mutation):
         except Exception as e:
             return EliminarCategoria(success=False, errors=str(e))
 
+class NuevoPugil(Mutation):
+    class Arguments:
+        nombre = graphene.String(required=True)
+        edad = graphene.Int(required=False)
+        peso = graphene.Decimal(required=False)
+        categoria = graphene.Int(required=True)
+        pais = graphene.Int(required=True)
+    
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, nombre, edad, peso,categoria,pais):
+        try:
+            item_nombre = nombre
+            item_edad = edad
+            item_peso = peso
+            item_categoria = Categoria.objects.get(id=categoria)
+            item_pais = Categoria.objects.get(id=pais)
+            Pugil.objects.create(nombre=item_nombre, edad=item_edad, peso=item_peso, categoria=item_categoria,pais=item_pais)
+            return NuevoPugil(success=True, errors=None)
+        except Exception as e:
+            return NuevoPugil(success=False, errors=str(e))
+
+
+class ActualizarPugil(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        nombre = graphene.String(required=False)
+        edad = graphene.Int(required=False)
+        peso = graphene.Decimal(required=False)
+        categoria = graphene.Int(required=True)
+        pais = graphene.Int(required=True)
+       
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, nombre, edad, peso,categoria,pais,id):
+        try:
+            item = Pugil.objects.get(id=id)
+            item_categoria = Categoria.objects.get(id=categoria)
+            item_pais = Pais.objects.get(id=pais)
+            item.nombre = nombre
+            item.edad = edad
+            item.peso = peso
+            item.categoria = item_categoria
+            item.pais = item_pais
+            item.save()
+            return ActualizarPugil(success=True, errors=None)
+        except Exception as e:
+            return ActualizarPugil(success=False, errors=str(e))
+
+
+class EliminarPugil(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, id):
+        try:
+            item = Pugil.objects.get(id=id)
+            item.delete()
+            return EliminarPugil(success=True, errors=None)
+        except Exception as e:
+            return EliminarPugil(success=False, errors=str(e))
 
 class Mutation(graphene.ObjectType):
     nuevoPais = NuevoPais.Field()
@@ -354,3 +421,6 @@ class Mutation(graphene.ObjectType):
     nuevaCategoria = NuevaCategoria.Field()
     actualizarCategoria = ActualizarCategoria.Field()
     eliminarCategoria = EliminarCategoria.Field()
+    nuevoPugil = NuevoPugil.Field()
+    actualizarPugil = ActualizarPugil.Field()
+    eliminarPugil = EliminarPugil.Field()
