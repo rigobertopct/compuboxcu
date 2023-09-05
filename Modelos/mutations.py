@@ -276,6 +276,64 @@ class EliminarEvento(Mutation):
         except Exception as e:
             return EliminarEvento(success=False, errors=str(e))
 
+class NuevaCategoria(Mutation):
+    class Arguments:
+        categoria = graphene.String(required=True)
+        peso_min = graphene.Int(required=False)
+        peso_max = graphene.Int(required=False)
+    
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, categoria, peso_min, peso_max):
+        try:
+            item_categoria = categoria
+            pesoMin = peso_min
+            pesoMax = peso_max
+            Categoria.objects.create(categoria=item_categoria, peso_min=pesoMin, peso_max=pesoMax)
+            return NuevaCategoria(success=True, errors=None)
+        except Exception as e:
+            return NuevaCategoria(success=False, errors=str(e))
+
+
+class ActualizarCategoria(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        categoria = graphene.String(required=False)
+        peso_min = graphene.Decimal(required=False)
+        peso_max = graphene.Decimal(required=False)
+       
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, categoria, peso_min, peso_max,id):
+        try:
+            item = Categoria.objects.get(id=id)
+            item.categoria = categoria
+            item.peso_min = peso_min
+            item.peso_max = peso_max
+            item.save()
+            return ActualizarCategoria(success=True, errors=None)
+        except Exception as e:
+            return ActualizarCategoria(success=False, errors=str(e))
+
+
+class EliminarCategoria(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, id):
+        try:
+            item = Categoria.objects.get(id=id)
+            item.delete()
+            return EliminarCategoria(success=True, errors=None)
+        except Exception as e:
+            return EliminarCategoria(success=False, errors=str(e))
+
 
 class Mutation(graphene.ObjectType):
     nuevoPais = NuevoPais.Field()
@@ -293,3 +351,6 @@ class Mutation(graphene.ObjectType):
     nuevoEvento = NuevoEvento.Field()
     actualizarEvento = ActualizarEvento.Field()
     eliminarEvento = EliminarEvento.Field()
+    nuevaCategoria = NuevaCategoria.Field()
+    actualizarCategoria = ActualizarCategoria.Field()
+    eliminarCategoria = EliminarCategoria.Field()
