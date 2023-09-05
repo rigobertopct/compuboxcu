@@ -1,10 +1,184 @@
 [
     {
         "pk": "1",
-        "model": "Golpe",
+        "model": "Modelos.Golpe",
         "fields": {
             "golpe": "Golpe Cruzado Lanzado al Tronco",
-            "siglas": "GCLTT"
+            "siglas": "GCLTT",
+            "efectivo": false
+        }
+        
+    },
+    {
+        "pk": "2",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Cruzado Lanzado al Tronco",
+            "siglas": "GCLTTE",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "3",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Cruzado Lanzado al Tronco",
+            "siglas": "GCLTD",
+            "efectivo": false
+        }
+    },
+    {
+        "pk": "4",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Cruzado Lanzado al Tronco",
+            "siglas": "GCLTDE",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "5",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Recto Lanzado al Tronco",
+            "siglas": "GRLTT",
+            "efectivo": false
+        }
+    },
+    {
+        "pk": "6",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Recto Lanzado al Tronco",
+            "siglas": "GRLTTE",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "7",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Recto Lanzado al Tronco",
+            "siglas": "GRLTD",
+            "efectivo": false
+        }
+    },
+    {
+        "pk": "8",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Recto Lanzado al Tronco",
+            "siglas": "GRLTDE",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "17",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Cruzado Lanzado a la Cabeza",
+            "siglas": "GCLCT",
+            "efectivo": false
+        }
+    },
+    {
+        "pk": "18",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Cruzado Lanzado a la Cabeza",
+            "siglas": "GCLCTE",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "19",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Cruzado Lanzado a la Cabeza",
+            "siglas": "GCLCD",
+            "efectivo": false
+        }
+    },
+    {
+        "pk": "20",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Cruzado Lanzado a la Cabeza",
+            "siglas": " GCLCDE",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "21",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Recto Lanzado a la Cabeza",
+            "siglas": "GRLCT",
+            "efectivo": false
+        }
+    },
+    {
+        "pk": "22",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Recto Lanzado a la Cabeza",
+            "siglas": "GRLCTE",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "23",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Recto  Lanzado a la Cabeza",
+            "siglas": "GRLCD",
+            "efectivo": false
+        }
+    },
+    {
+        "pk": "24",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe Recto  Lanzado a la Cabeza",
+            "siglas": "GRLCDE",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "25",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe que ocasiona conteo Mano Delantera",
+            "siglas": "GOCD",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "26",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe que ocasiona Nockout Mano Delantera",
+            "siglas": "GOND",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "27",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe que ocasiona conteo Mano Trasera",
+            "siglas": "GOCT",
+            "efectivo": true
+        }
+    },
+    {
+        "pk": "28",
+        "model": "Modelos.Golpe",
+        "fields": {
+            "golpe": "Golpe que ocasiona Nockout Mano Trasera",
+            "siglas": "GONT",
+            "efectivo": true
         }
     }
+
 ]

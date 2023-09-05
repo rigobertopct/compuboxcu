@@ -140,8 +140,9 @@ class Resultado(models.Model):
 
 
 class Golpe(models.Model):
-    golpe = models.CharField(max_length=255, verbose_name="golpe", unique=True)
+    golpe = models.CharField(max_length=255, verbose_name="golpe")
     siglas = models.CharField(max_length=10, verbose_name="siglas", null=True, blank=True)
+    efectivo = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
         return self.golpe

@@ -174,7 +174,7 @@ class Query(graphene.ObjectType):
             return Golpe.objects.all()
         else:
            return Golpe.objects.filter(
-                Q(golpe__icontains=name)|Q(siglas__icontains=name)
+                Q(golpe__icontains=name)|Q(siglas__icontains=name)|Q(efectivo__icontains=name)
                 
                                                   )
         
