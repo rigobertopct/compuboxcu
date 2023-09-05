@@ -137,10 +137,20 @@ class Resultado(models.Model):
         verbose_name = 'resultado'
         verbose_name_plural = 'resultados'
         db_table = 'resultado'
+        
+class Resultado(models.Model):
+    combate = models.ForeignKey(Combate, on_delete=models.SET_NULL, null=True, blank=True)
+    pugil = models.ForeignKey(Pugil, on_delete=models.SET_NULL, null=True, blank=True)
+    resultado = models.ForeignKey(CodifResultado, on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'resultado'
+        verbose_name_plural = 'resultados'
+        db_table = 'resultado'
 
 
 class Golpe(models.Model):
-    golpe = models.CharField(max_length=255, verbose_name="resultado", unique=True)
+    golpe = models.CharField(max_length=255, verbose_name="golpe", unique=True)
 
     def __str__(self):
         return self.golpe
@@ -178,3 +188,4 @@ class ConfigGolpe(models.Model):
         verbose_name = 'configolpe'
         verbose_name_plural = 'configolpes'
         db_table = 'config_golpe'
+        
