@@ -151,6 +151,10 @@ class Resultado(models.Model):
 
 class Golpe(models.Model):
     golpe = models.CharField(max_length=255, verbose_name="golpe", unique=True)
+<<<<<<< HEAD
+=======
+    siglas = models.CharField(max_length=10, verbose_name="siglas", null=True, blank=True)
+>>>>>>> 4c73b7315fd68365474666aacf04080a19bf0f7c
 
     def __str__(self):
         return self.golpe
