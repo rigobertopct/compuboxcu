@@ -137,16 +137,6 @@ class Resultado(models.Model):
         verbose_name = 'resultado'
         verbose_name_plural = 'resultados'
         db_table = 'resultado'
-        
-class Resultado(models.Model):
-    combate = models.ForeignKey(Combate, on_delete=models.SET_NULL, null=True, blank=True)
-    pugil = models.ForeignKey(Pugil, on_delete=models.SET_NULL, null=True, blank=True)
-    resultado = models.ForeignKey(CodifResultado, on_delete=models.SET_NULL, null=True, blank=True)
-
-    class Meta:
-        verbose_name = 'resultado'
-        verbose_name_plural = 'resultados'
-        db_table = 'resultado'
 
 
 class Golpe(models.Model):
