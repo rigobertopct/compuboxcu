@@ -159,38 +159,41 @@ class EliminarTipoEvento(Mutation):
 
 class NuevoReglamento(Mutation):
     class Arguments:
-        pais = graphene.String(required=True)
-        siglas = graphene.String(required=True)
+        tipo = graphene.String(required=True)
+        cant_r = graphene.Int(required=True)
+        duracion = graphene.Int(required=True)
 
     success = graphene.Boolean()
     errors = graphene.String()
 
-    def mutate(self, info, pais, siglas):
+    def mutate(self, info, tipo, cant_r, duracion):
         try:
-            Pais.objects.create(pais=pais, siglas=siglas)
-            return NuevoPais(success=True, errors=None)
+            Reglamento.objects.create(tipo=tipo, cant_r=cant_r, duracion=duracion)
+            return NuevoReglamento(success=True, errors=None)
         except Exception as e:
-            return NuevoPais(success=False, errors=str(e))
+            return NuevoReglamento(success=False, errors=str(e))
 
 
 class ActualizarReglamento(Mutation):
     class Arguments:
         id = graphene.Int(required=True)
-        pais = graphene.String(required=True)
-        siglas = graphene.String(required=True)
+        tipo = graphene.String(required=True)
+        cant_r = graphene.Int(required=True)
+        duracion = graphene.Int(required=True)
 
     success = graphene.Boolean()
     errors = graphene.String()
 
-    def mutate(self, info, pais, siglas, id):
+    def mutate(self, info, tipo, cant_r, duracion, id):
         try:
-            paiss = Pais.objects.get(id=id)
-            paiss.pais = pais
-            paiss.siglas = siglas
-            paiss.save()
-            return ActualizarPais(success=True, errors=None)
+            item = Reglamento.objects.get(id=id)
+            item.tipo = tipo
+            item.cant_r = cant_r
+            item.duracion = duracion
+            item.save()
+            return ActualizarReglamento(success=True, errors=None)
         except Exception as e:
-            return ActualizarPais(success=False, errors=str(e))
+            return ActualizarReglamento(success=False, errors=str(e))
 
 
 class EliminarReglamento(Mutation):
@@ -202,11 +205,76 @@ class EliminarReglamento(Mutation):
 
     def mutate(self, info, id):
         try:
-            paiss = Pais.objects.get(id=id)
-            paiss.delete()
-            return EliminarPais(success=True, errors=None)
+            item = Reglamento.objects.get(id=id)
+            item.delete()
+            return EliminarReglamento(success=True, errors=None)
         except Exception as e:
-            return EliminarPais(success=False, errors=str(e))
+            return EliminarReglamento(success=False, errors=str(e))
+
+
+class NuevoEvento(Mutation):
+    class Arguments:
+        nombre = graphene.String(required=True)
+        pais = graphene.Int(required=True)
+        reglamento = graphene.Int(required=True)
+        tipoevento = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, nombre, pais, reglamento, tipoevento):
+        try:
+            item_pais = Pais.objects.get(id=pais)
+            item_reglamento = Reglamento.objects.get(id=reglamento)
+            item_tipoevento = TipoEvento.objects.get(id=tipoevento)
+            Evento.objects.create(nombre=nombre, pais=item_pais, reglamento=item_reglamento,
+                                  tipoevento=item_tipoevento)
+            return NuevoEvento(success=True, errors=None)
+        except Exception as e:
+            return NuevoEvento(success=False, errors=str(e))
+
+
+class ActualizarEvento(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        nombre = graphene.String(required=True)
+        pais = graphene.Int(required=True)
+        reglamento = graphene.Int(required=True)
+        tipoevento = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, nombre, pais, reglamento, tipoevento, id):
+        try:
+            item = Evento.objects.get(id=id)
+            item_pais = Pais.objects.get(id=pais)
+            item_reglamento = Reglamento.objects.get(id=reglamento)
+            item_tipoevento = TipoEvento.objects.get(id=tipoevento)
+            item.nombre = nombre
+            item.pais = item_pais
+            item.reglamento = item_reglamento
+            item.tipoevento = item_tipoevento
+            item.save()
+            return ActualizarEvento(success=True, errors=None)
+        except Exception as e:
+            return ActualizarEvento(success=False, errors=str(e))
+
+
+class EliminarEvento(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, id):
+        try:
+            item = Evento.objects.get(id=id)
+            item.delete()
+            return EliminarEvento(success=True, errors=None)
+        except Exception as e:
+            return EliminarEvento(success=False, errors=str(e))
 
 
 class Mutation(graphene.ObjectType):
@@ -219,3 +287,6 @@ class Mutation(graphene.ObjectType):
     nuevoTipoEvento = NuevoTipoEvento.Field()
     actualizarTipoEvento = ActualizarTipoEvento.Field()
     eliminarTipoEvento = EliminarTipoEvento.Field()
+    nuevoReglamento = NuevoReglamento.Field()
+    actualizarReglamento = ActualizarReglamento.Field()
+    eliminarReglamento = EliminarReglamento.Field()
