@@ -290,3 +290,6 @@ class Mutation(graphene.ObjectType):
     nuevoReglamento = NuevoReglamento.Field()
     actualizarReglamento = ActualizarReglamento.Field()
     eliminarReglamento = EliminarReglamento.Field()
+    nuevoEvento = NuevoEvento.Field()
+    actualizarEvento = ActualizarEvento.Field()
+    eliminarEvento = EliminarEvento.Field()
