@@ -402,6 +402,69 @@ class EliminarPugil(Mutation):
         except Exception as e:
             return EliminarPugil(success=False, errors=str(e))
 
+class NuevoCombate(Mutation):
+    class Arguments:
+        fecha = graphene.Date(required=True)
+        esquinaA = graphene.Int(required=False)
+        esquinaR = graphene.Decimal(required=False)
+        evento = graphene.Int(required=True)        
+    
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, fecha, esquinaA, esquinaR,evento):
+        try:
+            item_fecha = fecha
+            item_esquinaA = esquinaA
+            item_esquinaR = esquinaR
+            item_evento = Evento.objects.get(id=evento)
+            Combate.objects.create(fecha=item_fecha, esquinaA=item_esquinaA, esquinaR=item_esquinaR, evento=item_evento)
+            return NuevoCombate(success=True, errors=None)
+        except Exception as e:
+            return NuevoCombate(success=False, errors=str(e))
+
+
+class ActualizarCombate(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        fecha = graphene.Date(required=False)
+        esquinaA = graphene.Int(required=False)
+        esquinaR = graphene.Decimal(required=False)
+        evento = graphene.Int(required=True)
+             
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, fecha, esquinaA, esquinaR,evento,id):
+        try:
+            item = Pugil.objects.get(id=id)
+            item_roja = Pugil.objects.get(id=esquinaR)
+            item_azul = Pugil.objects.get(id=esquinaA)
+            item_evento = Evento.objects.get(id=evento)
+            item.fecha = fecha
+            item.esquinaA = item_azul
+            item.esquinaR = item_roja
+            item.evento = item_evento
+            item.save()
+            return ActualizarCombate(success=True, errors=None)
+        except Exception as e:
+            return ActualizarCombate(success=False, errors=str(e))
+
+class EliminarCombate(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, id):
+        try:
+            item = Combate.objects.get(id=id)
+            item.delete()
+            return EliminarCombate(success=True, errors=None)
+        except Exception as e:
+            return EliminarCombate(success=False, errors=str(e))
 class Mutation(graphene.ObjectType):
     nuevoPais = NuevoPais.Field()
     actualizarPais = ActualizarPais.Field()
@@ -424,3 +487,6 @@ class Mutation(graphene.ObjectType):
     nuevoPugil = NuevoPugil.Field()
     actualizarPugil = ActualizarPugil.Field()
     eliminarPugil = EliminarPugil.Field()
+    nuevoCombate = NuevoCombate.Field()
+    actualizarCombate = ActualizarCombate.Field()
+    eliminarCombate = EliminarCombate.Field()
