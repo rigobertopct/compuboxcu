@@ -224,33 +224,41 @@ class NuevoEvento(Mutation):
 
     def mutate(self, info, nombre, pais, reglamento, tipoevento):
         try:
-            pais=Pais.objects.get(id=pais)
-            Reglamento.objects.create(tipo=tipo, cant_r=cant_r, duracion=duracion)
-            return NuevoReglamento(success=True, errors=None)
+            item_pais = Pais.objects.get(id=pais)
+            item_reglamento = Reglamento.objects.get(id=reglamento)
+            item_tipoevento = TipoEvento.objects.get(id=tipoevento)
+            Evento.objects.create(nombre=nombre, pais=item_pais, reglamento=item_reglamento,
+                                  tipoevento=item_tipoevento)
+            return NuevoEvento(success=True, errors=None)
         except Exception as e:
-            return NuevoReglamento(success=False, errors=str(e))
+            return NuevoEvento(success=False, errors=str(e))
 
 
 class ActualizarEvento(Mutation):
     class Arguments:
         id = graphene.Int(required=True)
-        tipo = graphene.String(required=True)
-        cant_r = graphene.Int(required=True)
-        duracion = graphene.Int(required=True)
+        nombre = graphene.String(required=True)
+        pais = graphene.Int(required=True)
+        reglamento = graphene.Int(required=True)
+        tipoevento = graphene.Int(required=True)
 
     success = graphene.Boolean()
     errors = graphene.String()
 
-    def mutate(self, info, tipo, cant_r, duracion, id):
+    def mutate(self, info, nombre, pais, reglamento, tipoevento, id):
         try:
-            item = Reglamento.objects.get(id=id)
-            item.tipo = tipo
-            item.cant_r = cant_r
-            item.duracion = duracion
+            item = Evento.objects.get(id=id)
+            item_pais = Pais.objects.get(id=pais)
+            item_reglamento = Reglamento.objects.get(id=reglamento)
+            item_tipoevento = TipoEvento.objects.get(id=tipoevento)
+            item.nombre = nombre
+            item.pais = item_pais
+            item.reglamento = item_reglamento
+            item.tipoevento = item_tipoevento
             item.save()
-            return ActualizarReglamento(success=True, errors=None)
+            return ActualizarEvento(success=True, errors=None)
         except Exception as e:
-            return ActualizarReglamento(success=False, errors=str(e))
+            return ActualizarEvento(success=False, errors=str(e))
 
 
 class EliminarEvento(Mutation):
@@ -262,11 +270,12 @@ class EliminarEvento(Mutation):
 
     def mutate(self, info, id):
         try:
-            item = Reglamento.objects.get(id=id)
+            item = Evento.objects.get(id=id)
             item.delete()
-            return EliminarReglamento(success=True, errors=None)
+            return EliminarEvento(success=True, errors=None)
         except Exception as e:
-            return EliminarReglamento(success=False, errors=str(e))
+            return EliminarEvento(success=False, errors=str(e))
+
 
 class Mutation(graphene.ObjectType):
     nuevoPais = NuevoPais.Field()
