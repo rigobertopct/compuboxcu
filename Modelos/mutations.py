@@ -581,6 +581,62 @@ class EliminarResultado(Mutation):
         except Exception as e:
             return EliminarResultado(success=False, errors=str(e))
 
+class NuevoGolpe(Mutation):
+    class Arguments:
+        golpe = graphene.String(required=True)
+        siglas = graphene.String(required=False)
+        efectivo = graphene.Boolean(required=True)        
+    
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, golpe, siglas, efectivo):
+        try:
+            item_golpe = golpe
+            item_siglas = siglas
+            item_efectivo = efectivo
+            Golpe.objects.create(golpe=item_golpe, siglas=item_siglas, efectivo=item_efectivo)
+            return NuevoGolpe(success=True, errors=None)
+        except Exception as e:
+            return NuevoGolpe(success=False, errors=str(e))
+
+
+class ActualizarGolpe(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        siglas = graphene.String(required=False)
+        golpe = graphene.String(required=False)
+        efectivo = graphene.Boolean(required=False)           
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, golpe, siglas, efectivo,id):
+        try:
+            item = Golpe.objects.get(id=id)           
+            item.golpe = golpe
+            item.siglas = siglas
+            item.efectivo = efectivo
+            item.save()
+            return ActualizarGolpe(success=True, errors=None)
+        except Exception as e:
+            return ActualizarGolpe(success=False, errors=str(e))
+
+class EliminarGolpe(Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+    errors = graphene.String()
+
+    def mutate(self, info, id):
+        try:
+            item = Golpe.objects.get(id=id)
+            item.delete()
+            return EliminarGolpe(success=True, errors=None)
+        except Exception as e:
+            return EliminarGolpe(success=False, errors=str(e))
+
         
 class Mutation(graphene.ObjectType):
     nuevoPais = NuevoPais.Field()
@@ -613,3 +669,6 @@ class Mutation(graphene.ObjectType):
     nuevoResultado = NuevoResultado.Field()
     actualizarResultado = ActualizarResultado.Field()
     EliminarResultado = EliminarResultado.Field()
+    nuevoGolpe = NuevoGolpe.Field()
+    actualizarGolpe = ActualizarGolpe.Field()
+    EliminarGolpe = EliminarGolpe.Field()
