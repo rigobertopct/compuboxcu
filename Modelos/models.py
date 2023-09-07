@@ -109,7 +109,7 @@ class Combate(models.Model):
     fecha = models.DateField()
 
     def __str__(self):
-        return self.fecha
+        return self.nombre
 
     class Meta:
         verbose_name = 'combate'
@@ -159,7 +159,7 @@ class ContadorGolpes(models.Model):
     combate = models.ForeignKey(Combate, on_delete=models.SET_NULL, null=True, blank=True)
     numero_asalto = models.PositiveIntegerField()
     golpe = models.ForeignKey(Golpe, on_delete=models.SET_NULL, null=True, blank=True)
-    esquina = models.CharField(max_length=255, verbose_name="esquina")
+    esquina = models.ForeignKey(Pugil, on_delete=models.SET_NULL, verbose_name="esquina", null=True, blank=True)
 
     def __str__(self):
         return self.esquina

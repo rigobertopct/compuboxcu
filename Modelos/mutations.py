@@ -2,6 +2,7 @@ import graphene
 from graphene import Mutation
 
 from .models import *
+from .queries import CombateType
 
 
 class NuevoPais(Mutation):
@@ -404,24 +405,27 @@ class EliminarPugil(Mutation):
 
 class NuevoCombate(Mutation):
     class Arguments:
+        nombre = graphene.String()
         fecha = graphene.Date(required=True)
         esquinaA = graphene.Int(required=False)
-        esquinaR = graphene.Decimal(required=False)
+        esquinaR = graphene.Int(required=False)
         evento = graphene.Int(required=True)        
     
     success = graphene.Boolean()
     errors = graphene.String()
+    combate = graphene.Field(CombateType)
 
-    def mutate(self, info, fecha, esquinaA, esquinaR,evento):
+    def mutate(self, info, fecha, esquinaA, esquinaR, evento, nombre):
         try:
             item_fecha = fecha
-            item_esquinaA = esquinaA
-            item_esquinaR = esquinaR
+            item_esquinaA = Pugil.objects.get(id=esquinaA)
+            item_esquinaR = Pugil.objects.get(id=esquinaR)
             item_evento = Evento.objects.get(id=evento)
-            Combate.objects.create(fecha=item_fecha, esquinaA=item_esquinaA, esquinaR=item_esquinaR, evento=item_evento)
-            return NuevoCombate(success=True, errors=None)
+            combate = Combate.objects.create(fecha=item_fecha, esquinaA=item_esquinaA, esquinaR=item_esquinaR,
+                                             evento=item_evento, nombre=nombre)
+            return NuevoCombate(success=True, errors=None, combate=combate)
         except Exception as e:
-            return NuevoCombate(success=False, errors=str(e))
+            return NuevoCombate(success=False, errors=str(e), combate=None)
 
 
 class ActualizarCombate(Mutation):
@@ -641,18 +645,18 @@ class NuevoContador(Mutation):
     class Arguments:
         numero_asalto = graphene.Int(required=True)
         combate = graphene.Int(required=False)
-        golpe = graphene.Int(required=True)        
-        esquina = graphene.String(required=True)        
-    
+        golpe = graphene.Int(required=True)
+        esquina = graphene.Int(required=True)
+
     success = graphene.Boolean()
     errors = graphene.String()
 
     def mutate(self, info, numero_asalto, combate, golpe, esquina):
         try:
             item_numA = numero_asalto
-            item_combate = Golpe.objects.get(id=combate)
+            item_combate = Combate.objects.get(id=combate)
             item_golpe = Golpe.objects.get(id=golpe)
-            item_esquina = Golpe.objects.get(id=esquina)
+            item_esquina = Pugil.objects.get(id=esquina)
             ContadorGolpes.objects.create(golpe=item_golpe, numero_asalto=item_numA, combate=item_combate,esquina=item_esquina)
             return NuevoContador(success=True, errors=None)
         except Exception as e:
