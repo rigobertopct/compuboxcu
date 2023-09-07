@@ -76,6 +76,7 @@ class Pugil(models.Model):
     peso = models.DecimalField(max_digits=5, decimal_places=2)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
     pais = models.ForeignKey(Pais, on_delete=models.SET_NULL, null=True, blank=True)
+    foto = models.ImageField(upload_to='pugiles', null=True, blank=True)
 
     def __str__(self):
         return self.nombre
@@ -101,6 +102,7 @@ class HistoricoPeso(models.Model):
 
 
 class Combate(models.Model):
+    nombre = models.CharField(max_length=50, null=True, blank=True)
     esquinaR = models.ForeignKey(Pugil, on_delete=models.SET_NULL, related_name='person1', null=True, blank=True)
     esquinaA = models.ForeignKey(Pugil, on_delete=models.SET_NULL, related_name='person', null=True, blank=True)
     evento = models.ForeignKey(Evento, on_delete=models.SET_NULL, null=True, blank=True)

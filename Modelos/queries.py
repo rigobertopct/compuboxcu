@@ -83,6 +83,12 @@ class ConfigGolpeType(DjangoObjectType):
         fields = '__all__'
 
 
+class UserType(DjangoObjectType):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
 class Query(graphene.ObjectType):
     tiposE = graphene.List(TipoEventoType, name=graphene.String())
     paises = graphene.List(PaisType, name=graphene.String())
@@ -96,7 +102,24 @@ class Query(graphene.ObjectType):
     resultados = graphene.List(ResultadoType, name=graphene.String())
     golpes = graphene.List(GolpeType, name=graphene.String())
     contGolpes = graphene.List(ContadorGolpesType, name=graphene.String())
-    configGolpes = graphene.List(ConfigGolpeType, name=graphene.String())
+    configGolpes = graphene.List(ConfigGolpeType, name=graphene.String(), usuario=graphene.Int())
+    usuarios = graphene.List(UserType, name=graphene.String())
+    datosCombate = graphene.Field(CombateType, id=graphene.Int())
+
+    def resolve_datosCombate(self, info, id):
+        combate = Combate.objects.get(id=id)
+        return combate
+
+    def resolve_usuarios(self, info, name):
+        if name == "":
+            return User.objects.all()
+        else:
+            return User.objects.filter(
+                Q(username__icontains=name) |
+                Q(first_name__icontains=name) |
+                Q(last_name=name) |
+                Q(email__icontains=name)
+            )
 
     def resolve_paises(self, info, name):
         if name == "":
@@ -201,11 +224,10 @@ class Query(graphene.ObjectType):
 
             )
 
-    def resolve_configGolpes(self, info, name):
+    def resolve_configGolpes(self, info, name, usuario):
         if name == "":
-            return ConfigGolpe.objects.all()
+            return ConfigGolpe.objects.filter(user=User.objects.get(id=usuario))
         else:
             return ConfigGolpe.objects.filter(
-                Q(tecla__icontains=name) | Q(golpe__golpe__icontains=name) | Q(user__username__icontains=name)
-
+                Q(tecla__icontains=name) | Q(golpe__golpe__icontains=name)
             )
