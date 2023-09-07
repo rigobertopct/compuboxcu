@@ -162,7 +162,7 @@ class ContadorGolpes(models.Model):
     esquina = models.ForeignKey(Pugil, on_delete=models.SET_NULL, verbose_name="esquina", null=True, blank=True)
 
     def __str__(self):
-        return self.esquina
+        return self.esquina.nombre
 
     class Meta:
         verbose_name = 'contadorgolpe'
