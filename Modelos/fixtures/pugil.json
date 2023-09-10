@@ -1,0 +1,206 @@
+[
+    {
+      "model": "Modelos.pugil",
+      "pk": 1,
+      "fields": {
+        "nombre": "Julio Cesar Lacruz",
+        "edad": null,
+        "peso": null,
+        "categoria": 1,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 2,
+      "fields": {
+        "nombre": "Henri Larduet",
+        "edad": null,
+        "peso": null,
+        "categoria": 2,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 3,
+      "fields": {
+        "nombre": "GIOVIS SALFRAN",
+        "edad": null,
+        "peso": null,
+        "categoria": 7,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 4,
+      "fields": {
+        "nombre": "ALEJANDRO CLARO FIZZ",
+        "edad": null,
+        "peso": null,
+        "categoria": 7,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 5,
+      "fields": {
+        "nombre": "DAMIAN ARCE",
+        "edad": null,
+        "peso": null,
+        "categoria": 7,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 6,
+      "fields": {
+        "nombre": "ERISLAN ROMERO",
+        "edad": null,
+        "peso": null,
+        "categoria": 7,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 8,
+      "fields": {
+        "nombre": "Yoenlis Hernandez",
+        "edad": null,
+        "peso": null,
+        "categoria": 7,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 9,
+      "fields": {
+        "nombre": "JULIO CÉSAR LA CRUZ",
+        "edad": null,
+        "peso": null,
+        "categoria": 8,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 10,
+      "fields": {
+        "nombre": "LAZIZBEK MULLOJONOV",
+        "edad": null,
+        "peso": null,
+        "categoria": 8,
+        "pais": 5,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 11,
+      "fields": {
+        "nombre": "SERIK TEMIRZHANOV",
+        "edad": null,
+        "peso": null,
+        "categoria": 9,
+        "pais": 6,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 12,
+      "fields": {
+        "nombre": "SAIDEL HORTA",
+        "edad": null,
+        "peso": null,
+        "categoria": 9,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 13,
+      "fields": {
+        "nombre": "ARLEN LÓPEZ",
+        "edad": null,
+        "peso": null,
+        "categoria": 1,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 14,
+      "fields": {
+        "nombre": "TUOHETARBIEKE TANGLATIHAN",
+        "edad": null,
+        "peso": null,
+        "categoria": 1,
+        "pais": 7,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 15,
+      "fields": {
+        "nombre": "ALEJANDRO CLARO FIZ",
+        "edad": null,
+        "peso": null,
+        "categoria": 10,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 16,
+      "fields": {
+        "nombre": "AQEEL BASHIR AHMED",
+        "edad": null,
+        "peso": null,
+        "categoria": 10,
+        "pais": 8,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 17,
+      "fields": {
+        "nombre": "LAZARO ALVAREZ",
+        "edad": null,
+        "peso": null,
+        "categoria": 2,
+        "pais": 1,
+        "foto": ""
+      }
+    },
+    {
+      "model": "Modelos.pugil",
+      "pk": 18,
+      "fields": {
+        "nombre": "RONIEL IGLESIAS",
+        "edad": null,
+        "peso": null,
+        "categoria": 9,
+        "pais": 1,
+        "foto": ""
+      }
+    }
+  ]

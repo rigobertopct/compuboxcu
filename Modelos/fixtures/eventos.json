@@ -1,0 +1,61 @@
+[
+    {
+        "pk": "1",
+        "model": "Modelos.TipoEvento",
+        "fields": {
+          "tipo": "Olimpiada"          
+        }
+      },
+      {
+        "pk": "2",
+        "model": "Modelos.TipoEvento",
+        "fields": {
+          "tipo": "Entrenamiento"          
+        }
+      },
+      {
+        "pk": "3",
+        "model": "Modelos.TipoEvento",
+        "fields": {
+          "tipo": "Campeonato Mundial"          
+        }
+      },
+      {
+        "pk": "4",
+        "model": "Modelos.TipoEvento",
+        "fields": {
+          "tipo": "Campeonato Profesional"          
+        }
+      },
+      
+    {
+      "pk": "1",
+      "model": "Modelos.Evento",
+      "fields": {
+        "nombre": "Entrenamiento",
+        "tipoevento": "1",
+        "pais": "1",
+        "reglamento": "1"
+      }
+    },
+    {
+      "pk": "2",
+      "model": "Modelos.Evento",
+      "fields": {
+        "nombre": "Paris 2024",
+        "tipoevento": "1",
+        "pais": "4",
+        "reglamento": "1"
+      }
+    },
+    {
+      "pk": "3",
+      "model": "Modelos.Evento",
+      "fields": {
+        "nombre": "CAMPEONATO MUNDIAL TASHKENT 2023",
+        "tipoevento": "1",
+        "pais": "5",
+        "reglamento": "1"
+      }
+    }
+  ]

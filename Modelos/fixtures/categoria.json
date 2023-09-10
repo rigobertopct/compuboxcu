@@ -1,0 +1,56 @@
+[
+    {
+      "pk": "1",
+      "model": "Modelos.Categoria",
+      "fields": {
+        "categoria": "80",
+        "peso_min": "78",
+        "peso_max": "80"
+      }
+    },
+    {
+      "pk": "2",
+      "model": "Modelos.Categoria",
+      "fields": {
+        "categoria": "78",
+        "peso_min": "76",
+        "peso_max": "78"
+      }
+    },
+    {
+      "pk": "7",
+      "model": "Modelos.Categoria",
+      "fields": {
+        "categoria": "51",
+        "peso_min": "50",
+        "peso_max": "52"
+      }
+    },
+    {
+      "pk": "8",
+      "model": "Modelos.Categoria",
+      "fields": {
+        "categoria": "92",
+        "peso_min": "86.01",
+        "peso_max": "92"
+      }
+    },
+    {
+      "pk": "9",
+      "model": "Modelos.Categoria",
+      "fields": {
+        "categoria": "57",
+        "peso_min": "54.01",
+        "peso_max": "57"
+      }
+    },
+    {
+      "pk": "10",
+      "model": "Modelos.Categoria",
+      "fields": {
+        "categoria": "48",
+        "peso_min": "47",
+        "peso_max": "48"
+      }
+    }
+  ]

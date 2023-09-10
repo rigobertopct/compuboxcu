@@ -1,0 +1,206 @@
+[
+  {
+    "pk": "1",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "1",
+      "fecha": "2023-06-08",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "2",
+      "esquinaR": "1"
+    }
+  },
+  {
+    "pk": "2",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "2",
+      "fecha": "2023-06-06",
+      "nombre": "clacificatorio",
+      "evento": "2",
+      "esquinaA": "2",
+      "esquinaR": "1"
+    }
+  },
+  {
+    "pk": "3",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "3",
+      "fecha": "2023-07-08",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "1",
+      "esquinaR": "2"
+    }
+  },
+  {
+    "pk": "4",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "4",
+      "fecha": "2023-07-07",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "1",
+      "esquinaR": "2"
+    }
+  },
+  {
+    "pk": "5",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "5",
+      "fecha": "2023-07-07",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "1",
+      "esquinaR": "2"
+    }
+  },
+  {
+    "pk": "6",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "6",
+      "fecha": "2023-07-21",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "1",
+      "esquinaR": "2"
+    }
+  },
+  {
+    "pk": "7",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "7",
+      "fecha": "2023-07-23",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "3",
+      "esquinaR": "4"
+    }
+  },
+  {
+    "pk": "8",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "8",
+      "fecha": "2023-07-23",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "5",
+      "esquinaR": "6"
+    }
+  },
+  {
+    "pk": "9",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "9",
+      "fecha": "2023-07-24",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "8",
+      "esquinaR": "6"
+    }
+  },
+  {
+    "pk": "10",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "10",
+      "fecha": "2023-05-10",
+      "nombre": "4to de final",
+      "evento": "3",
+      "esquinaA": "9",
+      "esquinaR": "10"
+    }
+  },
+  {
+    "pk": "11",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "11",
+      "fecha": "2023-05-10",
+      "nombre": "4to de final",
+      "evento": "3",
+      "esquinaA": "12",
+      "esquinaR": "11"
+    }
+  },
+  {
+    "pk": "12",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "12",
+      "fecha": "2023-05-10",
+      "nombre": "4to de final",
+      "evento": "3",
+      "esquinaA": "13",
+      "esquinaR": "14"
+    }
+  },
+  {
+    "pk": "13",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "13",
+      "fecha": "2023-05-10",
+      "nombre": "4to de final",
+      "evento": "3",
+      "esquinaA": "15",
+      "esquinaR": "16"
+    }
+  },
+  {
+    "pk": "14",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "14",
+      "fecha": "2023-08-01",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "9",
+      "esquinaR": "10"
+    }
+  },
+  {
+    "pk": "15",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "15",
+      "fecha": "2023-08-10",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "5",
+      "esquinaR": "6"
+    }
+  },
+  {
+    "pk": "16",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "16",
+      "fecha": "2023-08-14",
+      "nombre": "Entrenamiento",
+      "evento": "1",
+      "esquinaA": "17",
+      "esquinaR": "18"
+    }
+  },
+  {
+    "pk": "17",
+    "model": "Modelos.Combate",
+    "fields": {
+      "id": "17",
+      "fecha": "2023-08-14",
+      "nombre": "clasificatorio",
+      "evento": "2",
+      "esquinaA": "9",
+      "esquinaR": "10"
+    }
+  }
+]

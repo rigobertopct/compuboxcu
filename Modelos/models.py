@@ -72,8 +72,8 @@ class Categoria(models.Model):
 
 class Pugil(models.Model):
     nombre = models.CharField(max_length=255, verbose_name="Nombre y Apellidos", unique=True)
-    edad = models.PositiveIntegerField()
-    peso = models.DecimalField(max_digits=5, decimal_places=2)
+    edad = models.PositiveIntegerField(null=True)
+    peso = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
     pais = models.ForeignKey(Pais, on_delete=models.SET_NULL, null=True, blank=True)
     foto = models.ImageField(upload_to='pugiles', null=True, blank=True)
